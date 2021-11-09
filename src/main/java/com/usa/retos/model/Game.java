@@ -7,27 +7,27 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "machine")
+@Table(name = "game")
 public class Game implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String brand;
-    private Integer year;
+    private String  developer;
+    private Integer year;    
     private String description;
 
     @ManyToOne
     @JoinColumn(name = "idCategory")
-    @JsonIgnoreProperties("machines")
+    @JsonIgnoreProperties("games")
     private Category category;
 
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "machine")
-    @JsonIgnoreProperties({"machine", "client"})
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "game")
+    @JsonIgnoreProperties({"game", "client"})
     private List<Message> messages;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "machine")
-    @JsonIgnoreProperties({"machine", "client"})
+    @JsonIgnoreProperties({"game", "message"})
     private List<Reservation> reservations;
 
     public Integer getId() {
@@ -47,11 +47,11 @@ public class Game implements Serializable {
     }
 
     public String getBrand() {
-        return brand;
+        return developer;
     }
 
     public void setBrand(String brand) {
-        this.brand = brand;
+        this.developer = brand;
     }
 
     public Integer getYear() {
@@ -93,4 +93,9 @@ public class Game implements Serializable {
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
+    
+    
+    
+    
+    
 }

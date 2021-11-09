@@ -10,42 +10,42 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Machine")
+@RequestMapping("/api/Game")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class GameController {
     @Autowired
-    private GameService machineService;
+    private GameService gameService;
 
     @GetMapping("/all")
     public List<Game> getMachine(){
 
-        return machineService.getAll();
+        return gameService.getAll();
     }
 
-    @GetMapping("/{idMachine}")
-    public Optional<Game> getMachine (@PathVariable("idMachine") int id) {
+    @GetMapping("/{idGame}")
+    public Optional<Game> getMachine (@PathVariable("idGame") int id) {
 
-        return machineService.getMachine(id);
+        return gameService.getMachine(id);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Game save(@RequestBody Game machine) {
 
-        return machineService.save(machine);
+        return gameService.save(machine);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
 
     public Game update(@RequestBody Game machine) {
 
-        return machineService.update(machine);
+        return gameService.update(machine);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int id) {
-        return machineService.deleteMachine(id);
+        return gameService.deleteMachine(id);
     }
 
 }
